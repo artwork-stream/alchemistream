@@ -1027,6 +1027,8 @@ footer a {
 .login-box input,
 .login-box button,
 .captcha span {
+  border: none;
+  outline: none;
   color: var(--font-color); 
   font-family: var(--font-global);
 }
@@ -1035,8 +1037,15 @@ footer a {
   color: var(--font-color);
   font-family: var(--font-global);
 }
+.login-box input:focus,
+.login-box text:focus {
+  background: var(--shadow);
+}
 body.lock-scroll {
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100vh;  
+  overflow: hidden;  
 }
 </style>
 </head>
