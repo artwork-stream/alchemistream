@@ -10,19 +10,17 @@
 
 <style>
 :root {
-  --color-1: #4b0000;  
-  --color-2: #7a1e00;   
-  --color-3: #b7410e;   
-  --color-4: #8f7e00;   
-  --color-5: #145214;   
-
-  --font-color: #e8e8cc;  
+  --color-1: #4b0000;
+  --color-2: #7a1e00;
+  --color-3: #b7410e;
+  --color-4: #8f7e00;
+  --color-5: #145214;
+  --font-color: #e8e8cc;
   --font-global: 'Georgia', sans-serif;
-  --border: -4px -4px 8px rgba(255,255,255, 0.01);
   --radius: 10px;
-  --accent-gradient: linear-gradient(135deg, #7a1e00, #b7410e, #a07f00);
-  
+  --border: -4px -4px 8px rgba(255,255,255, 0.01);
   --shadow: rgba(255, 255, 255, 0.05);
+  --accent-gradient: linear-gradient(135deg, #7a1e00, #b7410e, #a07f00);
   --shadow-inset: inset 4px 4px 8px rgba(0,0,0,0.4), inset -4px -4px 8px rgba(255,255,255,0.2);
   --shadow-outer: 4px 4px 8px rgba(0,0,0,0.3), -4px -4px 8px rgba(255,255,255,0.1);
 }
@@ -31,17 +29,17 @@
   margin: 0;
   padding: 0;
   user-select: none;
-  -webkit-user-select: none; 
-  -webkit-tap-highlight-color: transparent; 
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
   position: relative;
-  overflow-x: hidden;  
+  overflow-x: hidden;
   scroll-behavior: smooth;
   font-size: 12px;
   font-family: var(--font-global);
-  color: var(--font-color);   
+  color: var(--font-color);
 }
 
 body {
@@ -50,7 +48,7 @@ body {
   height: 100%;
   overflow: hidden;
   position: relative;
-  background: var(--accent-gradient); 
+  background: var(--accent-gradient);
   color: var(--font-color);
   background-size: 100%;
   padding: 1rem 1.5rem;
@@ -61,11 +59,11 @@ body::after {
   position: absolute;
   content: "";
   inset: 0;
-  z-index: 9999;
+  z-index: 99999;
   background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
   background-repeat: repeat;
   background-size: auto;
-  opacity: 0.7;  
+  opacity: 0.7;
   mix-blend-mode: overlay;
   pointer-events: none;
 }
@@ -74,8 +72,12 @@ section {
   position: relative;
   z-index: 1;
   margin: 0 auto 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1.5rem;
   transition: all color 0.3s ease;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .button {
@@ -111,7 +113,7 @@ section {
 .glitch {
   font-family: var(--font-global);
   font-weight: bold;
-  background: var(--accent-gradient); 
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: glitchAnim 0.5s infinite;
@@ -135,20 +137,95 @@ section {
   }
 }
 
+.preload {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--font-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.fingerprint {
+  gap: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.fingerprint i {
+  font-size: 70px;
+  margin-bottom: 30px;
+  color: var(--font-color);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.4; }
+}
+
 .typed-text {
   display: flex;
   justify-content: center;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 15px; 
+  font-size: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
   color: var(--font-color);
 }
 
+.footer-routine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  padding: 20px 1.5rem;
+  text-align: center;
+  gap: 15px;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.footer-icons i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 15px;
+  color: var(--font-color);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all color 0.3s ease;
+  outline: none;
+  border: 1px solid var(--border);
+}
+
+.footer-quote {
+  font-size: 10px;
+  padding: 1.5rem;
+  line-height: 1.4;
+  color: var(--font-color);
+}
+
 footer {
   text-align: center;
-  padding: 1.5rem 2rem; 
+  padding: 1rem 1.5rem;
   margin-bottom: 20px;
   font-size: 12px;
   width: 100%;
@@ -165,6 +242,7 @@ footer a {
   cursor: pointer;
   word-break: break-word;
 }
+
 
 /* ============================== */
 /* ======= HOME SECTION ======== */
@@ -195,8 +273,8 @@ footer a {
   height: 100%;
   object-fit: cover;
   filter:
-  drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.03))
-  drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8));
+    drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.03))
+    drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8));
 }
 
 .home-name h1 {
@@ -208,9 +286,7 @@ footer a {
 }
 
 .home-bio {
-  margin-top: 25px;
-  margin-bottom: 40px;
-  margin: 0 auto;
+  margin: 0 auto 40px auto;
   padding: 15px;
   text-align: center;
   max-width: 1000px;
@@ -238,7 +314,8 @@ footer a {
   transition: all color 0.3s ease;
   outline: none;
   border: 1px solid var(--border);
-} 
+}
+
 
 /* ============================== */
 /* ==  CSS ABOUT TABS SECTION   == */
@@ -262,14 +339,13 @@ footer a {
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
-} 
+}
 
 .about-photo {
   width: 90%;
   max-height: 100%;
   padding: 15px;
-  margin: 0 auto;
-  margin-top: 20px;
+  margin: 20px auto 0 auto;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -282,15 +358,15 @@ footer a {
   object-fit: cover;
   border-radius: var(--radius);
   filter:
-  drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.2))
-  drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.9));
+    drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.2))
+    drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.9));
 }
 
 .about-bio {
-  margin: 0 auto 20px auto; 
+  margin: 0 auto 20px auto;
   padding: 15px;
-  text-align: left;      
-  max-width: 1000px;  
+  text-align: left;
+  max-width: 1000px;
   font-size: 10px;
   line-height: 1.4;
   color: var(--font-color);
@@ -301,7 +377,7 @@ footer a {
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1rem;
   justify-content: center;
-  margin: 0 auto 25px;
+  margin: 0 auto 25px auto;
 }
 
 .tab-item {
@@ -315,8 +391,9 @@ footer a {
 }
 
 .tab-content {
-  display: none;  
+  display: none;
 }
+
 .tab-content.active {
   display: block;
 }
@@ -331,7 +408,7 @@ footer a {
 .timeline-item {
   display: flex;
   flex-direction: column;
-  background: var(--accent-gradient); 
+  background: var(--accent-gradient);
 }
 
 .timeline-item .icon {
@@ -347,9 +424,10 @@ footer a {
 }
 
 .timeline-item h3 {
-  font-size: 10px; 
+  font-size: 10px;
   font-weight: normal;
 }
+
 
 /* ============================== */
 /* ====== TESTIMONIAL SECTION ====== */
@@ -412,6 +490,7 @@ footer a {
   color: var(--font-color);
 }
 
+
 /* ============================== */
 /* ====== SERVICES SECTION ====== */
 /* ============================== */
@@ -467,6 +546,7 @@ footer a {
   font-size: 10px;
   line-height: 1.5;
 }
+
 
 /* ============================== */
 /* ===  PRODUCT MARKET ONLINE === */
@@ -544,6 +624,104 @@ footer a {
   margin: 0 auto;
 }
 
+.cart-btn {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  color: var(--font-color);
+  border: none;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cart-btn i {
+  font-size: 20px;
+  margin: 0 auto;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 50%;
+}
+
+.cart-user {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.cart-user p {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 8px 0;
+  font-size: 12px;
+  color: var(--font-color);
+}
+
+.cart-user i {
+  min-width: 15px;
+  font-size: 12px;
+  color: var(--font-color);
+  cursor: help;
+}
+
+.cart-user span {
+  flex: 1;
+  word-break: break-word;
+  text-align: left;
+}
+
+.cart-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--accent-gradient);
+  color: var(--font-color);
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;   
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.cart-content {
+  width: 100%;
+  max-width: 400px; 
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-header {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.cart-panel.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
 .shop-categories {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -561,7 +739,7 @@ footer a {
   font-size: 10px;
   border-radius: var(--radius);
   cursor: pointer;
-  font-family: var(--font-global); 
+  font-family: var(--font-global);
   color: var(--font-color);
   text-align: center;
 }
@@ -578,7 +756,7 @@ footer a {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   width: 100%;
-  min-height: 300px; 
+  min-height: 300px;
 }
 
 .product-item {
@@ -589,17 +767,17 @@ footer a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   padding: 20px;
   box-sizing: border-box;
   text-align: center;
-  min-height: 300px; 
+  min-height: 300px;
 }
 
 .product-item img {
   width: 70%;
-  height: 80%; 
-  object-fit: cover; 
+  height: 80%;
+  object-fit: cover;
   aspect-ratio: 1 / 1;
   border-radius: var(--radius);
   margin-bottom: 20px;
@@ -611,7 +789,7 @@ footer a {
   padding: 10px 15px;
   color: var(--font-color);
   border-radius: var(--radius);
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .scroll-buttons {
@@ -683,7 +861,7 @@ footer a {
   color: var(--font-color);
   font-size: 10px;
   cursor: pointer;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 .cart-total {
@@ -713,7 +891,7 @@ footer a {
 }
 
 #clear-cart {
-  padding: 10px 15px;  
+  padding: 10px 15px;
   border-radius: var(--radius);
   color: var(--font-color);
   text-decoration: none;
@@ -721,19 +899,17 @@ footer a {
   font-size: 15px;
   font-family: var(--font-global);
   transition: all color 0.3s ease;
-}
-  
-#clear-cart {
   border: 1px solid var(--border);
   outline: none;
 }
 
 #clear-cart:focus {
   outline: none;
-}  
+}
+
 
 /* ============================== */
-/* ==   CONTACT FORM SECTION   == */
+/* ==  CONTACT FORM SECTION  == */
 /* ============================== */
 
 .contact-section {
@@ -749,7 +925,7 @@ footer a {
   font-size: 2rem;
   text-align: center;
 }
-  
+
 .contact-section h2 {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -805,11 +981,11 @@ footer a {
 }
 
 .contact-item {
-  flex: 1 1 160px; 
+  flex: 1 1 160px;
   max-width: 320px;
   padding: 20px;
   border-radius: var(--radius);
-  text-align: center;  
+  text-align: center;
 }
 
 .contact-item i {
@@ -823,6 +999,7 @@ footer a {
   font-size: 10px;
   color: var(--font-color);
 }
+
 
 /* ===== Navbar Floating Hamburger ===== */
 .hamburger {
@@ -842,30 +1019,37 @@ footer a {
   cursor: pointer;
 }
 
+/* ===== Panel Menu Overlay ===== */
 .menu-panel {
   position: fixed;
-  top: 60px;
-  right: 110px;
-  padding: 15px;  
-  font-size: 1.2rem;
-  padding: 10px;
-  width: 240px;
-  max-width: 100%;
-  max-height: 100%; 
-  z-index: 300;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: var(--accent-gradient);
   color: var(--font-color);
-  transition: all color 0.3s ease;
+  z-index: 300;
+  display: flex;
+  justify-content: center; 
+  align-items: center;   
+  overflow: hidden;
 }
 
+/* Menu panel header close button */
+.menu-header {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+/* Menu panel hidden state (untuk animasi tutup) */
 .menu-panel.hidden {
   opacity: 0; 
   pointer-events: none;
   transform: translateY(-10px);
 }
 
+/* ===== Menu Navigation (list tombol) ===== */
 .menu-nav {
   display: flex;
   flex-direction: column;
@@ -878,105 +1062,98 @@ footer a {
   text-align: left;   
   margin: 8px 0;
   padding: 12px;
+  width: 240px; 
+  max-width: 420px;
 }
-   
+
 .menu-nav i {
   margin: 0 10px;
 }
 
-/* Floating Cart Button */
-.shopping {
-  position: fixed;
-  top: 120px;
-  right: 35px;
-  width: 25px;
-  height: 30px;
-  font-size: 25px;
-  z-index: 200;     
-  padding: auto;
-  text-align: center;
-  background: var(--accent-gradient);
-  color: var(--font-color);
-  border-radius: var(--radius);
-  transition: all color 0.3s ease;
-  cursor: pointer;
-}
-
-/* Floating Cart Panel */
-.cart-panel {
-  position: fixed;
-  top: 190px;
-  right: 35px;
-  width: 290px;
-  padding: 20px 30px;
-  max-width: 100%;
-  max-height: 100%; 
-  z-index: 300;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--accent-gradient);
-  color: var(--font-color);
-  transition: all color 0.3s ease;
-}
-
-.cart-panel.hidden {
-  opacity: 0; 
-  pointer-events: none;
-  transform: translateY(-10px);
-}
-
-.cart-badge {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-  background: none;
-  color: var(--font-color);
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 50%;
-  display: none; 
-}
-
-/* Overlay Fullscreen */
+/* ===== Overlay Fullscreen untuk Login ===== */
 .login-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
   background: var(--accent-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
 }
+
+/* Kotak login utama */
 .login-box {
   background: var(--accent-gradient);
   border-radius: var(--radius);
   color: var(--font-color);
   text-align: center;
   padding: 25px;
-  width: 300px;
+  width: 320px; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
 }
+
+/* Input dan tombol di dalam login box */
 .login-box input {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   border: var(--border);
   border-radius: var(--radius);
+  font-family: var(--font-global);
+  color: var(--font-color);
+  font-size: 10px;
+  outline: none;
+  box-sizing: border-box;
 }
+
 .login-box button {
   width: 100%;
   padding: 15px 20px;
   margin: 8px 0;
   border: var(--border);
   border-radius: var(--radius);
+  font-family: var(--font-global);
+  color: var(--font-color);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-sizing: border-box;
 }
+
+/* Style placeholder input login */
+.login-box input::placeholder {
+  font-size: 10px; 
+  color: var(--font-color);
+}
+
+/* Focus state input dan textarea login */
+.login-box input:focus,
+.login-box textarea:focus {
+  background: var(--shadow);
+  outline: none;
+}
+
+/* Ikon besar di dalam login box */
+.log-in i {
+  font-size: 30px; 
+  color: var(--font-color); 
+  text-align: center;
+  margin-bottom: 15px; 
+}
+
+/* ===== Captcha Section di Login ===== */
 .captcha {
   display: flex;
   align-items: center;
   gap: 15px; 
   margin: 8px 0;
 }
+
 .captcha span {
   width: 10%;
   flex: 1; 
@@ -985,7 +1162,10 @@ footer a {
   border-radius: var(--radius);
   letter-spacing: 2px;
   text-align: center;
+  font-family: var(--font-global);
+  color: var(--font-color);
 }
+
 .captcha button {
   background: var(--accent-gradient);
   border: var(--border);
@@ -996,37 +1176,29 @@ footer a {
   align-items: center;
   justify-content: center;
   color: var(--font-color);
-  font-size: 15px; 
+  font-size: 15px;
 }
-.login-box {
-  width: 320px; 
-  display: flex;
-  flex-direction: column;
-  gap: 10px; 
-}
-.login-box .inset,
-.login-box .button {
-  width: 100%;
-  box-sizing: border-box;
-}
-.log-in i {
-  font-size: 30px; 
-  color: var(--font-color); 
-  text-align: center;
-  margin-bottom: 15px; 
-}
-.captcha {
-  display: flex;
-  gap: 15px;
-}
+
+/* Captcha input dan button layout */
 .captcha .inset { 
   flex: 1;
   text-align: center;
 }
+
 .captcha .button {
   width: 40px;
   flex-shrink: 0;
 }
+
+/* Paragraf kecil di login box */
+.login-box p {
+  font-size: 10px;
+  color: var(--font-color); 
+  font-family: var(--font-global);
+  text-align: center;
+}
+
+/* Menghilangkan border default & outline dari elemen login */
 .login-box h2,
 .login-box input,
 .login-box button,
@@ -1036,15 +1208,77 @@ footer a {
   color: var(--font-color); 
   font-family: var(--font-global);
 }
-.login-box input::placeholder {
-  font-size: 10px; 
+
+/* ===== Notification Button Group di Login ===== */
+.notif-button {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+}
+
+.notif-button .button {
+  width: 100%;
+  padding: 15px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* ===== Modal Popup ===== */
+.modal {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  padding: 20px;
+  display: none;
+  background: var(--accent-gradient);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  padding: 20px 30px;
+  border-radius: 10px; 
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+/* Tombol close modal */
+.close-btn {
+  position: fixed;
+  right: 30px;
+  top: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Pesan isi modal */
+.modal-message {
+  margin: 20px 0;
+  font-size: 12px;
+  font-weight: 200;
+  text-align: left;   
   color: var(--font-color);
-  font-family: var(--font-global);
 }
-.login-box input:focus,
-.login-box text:focus {
-  background: var(--shadow);
+
+.modal-message strong {
+  font-size: 25px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  color: var(--font-color);
+  margin-bottom: 20px;
 }
+
+/* Disable Scroll pada body */
 body.lock-scroll {
   margin: 0;
   padding: 0;
@@ -1055,76 +1289,121 @@ body.lock-scroll {
 </head>
 <body oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;">
 
+  <!-- ===== PRELOAD OVERLAY ===== -->
+  <div id="preload" class="preload">
+    <div class="fingerprint">
+      <i class="fas fa-fingerprint"></i>
+      <p>Press Fingerprint</p>
+    </div>
+  </div>
+
+  <!-- ===== AUDIO ===== -->
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- ===== Login Overlay ===== -->
-<div id="loginOverlay" class="login-overlay">
-  <div class="login-box outer">
-  <div class="log-in">
-    <i class="fas fa-user-secret"></i>
-    <h2>User Secret</h2>
-  </div>
-    <input class="inset" type="text" id="username" placeholder="Your Username" required>
-    <input class="inset" type="text" id="domisili" placeholder="Your Domicile" required>
+  <div id="loginOverlay" class="login-overlay">
+    <div class="login-box outer">
+      <div class="log-in">
+        <i class="fas fa-user-secret"></i>
+        <h2>User Secret</h2>
+      </div>
+      <input class="inset" type="text" id="username" placeholder="Username" required>
+      <input class="inset" type="text" id="domisili" placeholder="Domicile" required>
 
-    <!-- Captcha sederhana -->
-    <div class="captcha">
-      <input class="inset" type="text" id="captchaInput" placeholder="Enter Code" required>
-      <span class="inset" id="captchaCode"></span>
-      <button class="button" type="button" onclick="generateCaptcha()"><i class="fa-solid fa-rotate"></i></button>
-    </div>   
+      <!-- Captcha sederhana -->
+      <div class="captcha">
+        <input class="inset" type="text" id="captchaInput" placeholder="Enter Code" required>
+        <span class="inset" id="captchaCode"></span>
+        <button class="button" type="button" onclick="generateCaptcha()">
+          <i class="fa-solid fa-rotate"></i>
+        </button>
+      </div>
 
-    <button class="button" onclick="login()">Verification</button>
-  </div>
-</div>
+      <button class="button" onclick="login()">Verification</button>
 
-<!-- Floating Cart Button -->
-<div class="shopping button" onclick="toggleCart()">
-  <i class="fas fa-shopping-cart"></i>
-  <span id="cartBadge" class="cart-badge">0</span>
-</div>
-</div>
+      <div class="notif-button">
+        <button class="button" type="button" onclick="openModal('Announcement')">Announcement</button>
+        <button class="button" type="button" onclick="openModal('Attention')">Attention</button>
+      </div>
+      <p>Please read the Announcement and Attention first to know the rules and requirements.</p>      
+    </div>
+  </div>
 
-<!-- Floating Cart Panel -->
-<div id="cartPanel" class="cart-panel outer hidden">
-  <div class="cart-scroll inset">
-    <ul id="cart-list"></ul>
-    <p id="empty-cart">“ your cart is empty ”</p>
+  <!-- Modal Overlay -->
+  <div id="myModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-btn button" onclick="closeModal()">&times;</span>
+      <div id="modalMessage" class="modal-message">•••</div>
+    </div>
   </div>
-  <div class="inset">
-    <p id="cart-total">Total : IDR 0</p>
+
+  <!-- Floating Cart Panel -->
+  <div id="cartPanel" class="cart-panel hidden">
+    <div class="cart-header">
+      <button id="closeCart" class="close-btn button">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="cart-user">
+      <p class="inset"><i class="fas fa-flag" title="Country"></i> <span id="user-country">Loading...</span></p>
+      <p class="inset"><i class="fas fa-map" title="Region"></i> <span id="user-region">Loading...</span></p>
+      <p class="inset"><i class="fas fa-city" title="City"></i> <span id="user-city">Loading...</span></p>
+      <p class="inset"><i class="fas fa-map-pin" title="Suburb"></i> <span id="user-suburb">Loading...</span></p>
+    </div>
+
+    <div class="cart-content">
+      <div class="cart-scroll inset">
+        <ul id="cart-list"></ul>
+        <p id="empty-cart">“ your cart is empty ”</p>
+      </div>
+
+      <div class="inset">
+        <p id="cart-total">Total : IDR 0</p>
+      </div>
+
+      <div class="cart-actions">
+        <a id="whatsapp-link" href="#" class="button" target="_blank">Order Now</a>
+        <button id="clear-cart" class="button">Cancel All</button>
+      </div>
+    </div>
   </div>
-  <div class="cart-actions">
-    <a id="whatsapp-link" href="#" class="button" target="_blank">Order Now</a>
-    <button id="clear-cart" class="button">Cancel All</button>
-  </div>
-</div>
-      
+
   <!-- Floating Hamburger -->
   <div class="hamburger button" onclick="toggleMenu()">
     <i class="fas fa-bars"></i>
   </div>
-  
+
   <!-- Floating Menu -->
-  <div id="menuPanel" class="menu-panel outer hidden">
-  <nav class="menu-nav inset">
-    <button class="button menu-btn" data-target="#home">
-      <i class="fas fa-home"></i> Home
-    </button>
-    <button class="button menu-btn" data-target="#about">
-      <i class="fas fa-info-circle"></i> About 
-    </button>
-    <button class="button menu-btn" data-target="#shop">
-      <i class="fas fa-shop"></i> Market 
-    </button>    
-    <button class="button menu-btn" data-target="#services">
-      <i class="fas fa-gear"></i> Services
-    </button>
-    <button class="button menu-btn" data-target="#testimonial">
-      <i class="fas fa-comments"></i> Testimonial 
-    </button>
-    <button class="button menu-btn" data-target="#contact">
-      <i class="fas fa-envelope"></i> Contact 
-    </button>
-  </nav>
+  <div id="menuPanel" class="menu-panel hidden">
+    <div class="menu-header">
+      <button id="closeMenu" class="close-btn button">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <nav class="menu-nav inset">
+      <button class="button menu-btn" data-target="#home">
+        <i class="fas fa-home"></i> Home
+      </button>
+      <button class="button menu-btn" data-target="#about">
+        <i class="fas fa-info-circle"></i> About
+      </button>
+      <button class="button menu-btn" data-target="#shop">
+        <i class="fas fa-shop"></i> Market
+      </button>
+      <button class="button menu-btn" data-target="#services">
+        <i class="fas fa-gear"></i> Services
+      </button>
+      <button class="button menu-btn" data-target="#testimonial">
+        <i class="fas fa-comments"></i> Testimonial
+      </button>
+      <button class="button menu-btn" data-target="#contact">
+        <i class="fas fa-envelope"></i> Contact
+      </button>
+    </nav>
   </div>
 
   <!-- ===== Home Section ===== -->
@@ -1134,7 +1413,7 @@ body.lock-scroll {
         <img src="https://i.ibb.co.com/HDX2bz92/logo.png" alt="alchemist-stream" />
       </a>
     </div>
-      
+
     <div class="home-info">
       <div class="home-name">
         <h1 class="glitch">Alchemist Stream</h1>
@@ -1142,7 +1421,7 @@ body.lock-scroll {
       <div class="typed-text" translate="no">
         <span id="typed"></span>
       </div>
-      
+
       <!-- Social Media -->
       <div class="home-socials">
         <a href="https://wa.me/@alchemistream" target="_blank"><i class="fab fa-whatsapp button"></i></a>
@@ -1155,19 +1434,19 @@ body.lock-scroll {
         Kami bukan pewaris — kami adalah perintis di Saat dunia dipenuhi tipu daya dan tikaman dari belakang, kami bergerak dengan perhitungan melalui analisis, menjadikan segala hal sebagai senjata. Bukan kami yang tunduk pada zaman — tapi zamanlah yang dipaksa menyesuaikan diri dengan kami.
       </p>
     </div>
-  </section>  
+  </section>
 
   <!-- ===== About Section ===== -->
-  <section id="about" class="about-section outer">
+  <section id="about" class="about-section hidden outer">
     <i class="fas fa-info-circle" title="about"></i>
     <h2>About Us</h2>
-    
+
     <div class="about-photo">
-     <a href="#" class="about-icon">
-      <img src="https://i.ibb.co.com/N69bBb6k/founder.png" alt="artwork-stream" />
-     </a>
+      <a href="#" class="about-icon">
+        <img src="https://i.ibb.co.com/N69bBb6k/founder.png" alt="artwork-stream" />
+      </a>
     </div>
-    
+
     <p class="about-bio">
       Sejak awal kami tidak hanya bermain — kami meracik pengaruh. Di balik ruang kimia dan asap laboratorium, lahirlah perhitungan. Kami tidak menjual produk — kami mengatur pasar. <br><br>
       Dalam dunia yang bergerak sangat cepat, kami menciptakan formula. Campuran antara estetika, budaya, dan kekuasaan — dengan dosis akurat yang hanya diketahui oleh mereka yang berada di dalam jaringan. <br><br>
@@ -1186,15 +1465,18 @@ body.lock-scroll {
       <div class="timeline">
         <div class="timeline-item inset">
           <i class="fas fa-vials icon"></i>
-          <span>Hidden Formulation</span>
+          <span>Formulation Infiltration</span>
+          <h3>menyusup, mengumpulkan, mendeteksi, dan menguasai.</h3>
         </div>
         <div class="timeline-item inset">
           <i class="fas fa-filter icon"></i>
-          <span>Secret Extraction</span>
+          <span>Persuasion Extraction</span>
+          <h3>menggerakkan massa lewat narasi, visual, dan digital branding.</h3>
         </div>
         <div class="timeline-item inset">
           <i class="fas fa-truck-loading icon"></i>
-          <span>Distribution Control</span>
+          <span>Transmutation Control</span>
+          <h3>mengubah bahan mentah jadi produk premium bernilai tinggi.</h3>
         </div>
       </div>
     </div>
@@ -1204,15 +1486,18 @@ body.lock-scroll {
       <div class="timeline">
         <div class="timeline-item inset">
           <i class="fas fa-microscope icon"></i>
-          <span>Dark Lane Operation</span>
+          <span>Dark Operation</span>
+          <h3>aksi lapangan untuk menguasai pasar lokal.</h3>
         </div>
         <div class="timeline-item inset">
           <i class="fas fa-atom icon"></i>
-          <span>Compound Engineering</span>
+          <span>Compound Expansion</span>
+          <h3>perluasan jaringan dan pengaruh dari lokal ke global.</h3>
         </div>
         <div class="timeline-item inset">
           <i class="fas fa-user-secret icon"></i>
-          <span>Formation of the Alliance</span>
+          <span>Formation Invasion</span>
+          <h3>dominasi total melalui serangan kilat dan kontrol distribusi.</h3>
         </div>
       </div>
     </div>
@@ -1222,24 +1507,27 @@ body.lock-scroll {
       <div class="timeline">
         <div class="timeline-item inset">
           <i class="fas fa-flask icon"></i>
-          <span>Project Red Mercury</span>
+          <span>Project Eksklusif</span>
+          <h3>event dengan akses terbatas dan atmosfer premium.</h3>
         </div>
         <div class="timeline-item inset">
           <i class="fas fa-certificate icon"></i>
-          <span>Black Formula Lab</span>
+          <span>Black Market Place</span>
+          <h3>platform perdagangan produk otentik dengan kurasi ketat.</h3>
         </div>
         <div class="timeline-item inset">
           <i class="fas fa-network-wired icon"></i>
           <span>Compound Ghost Network</span>
+          <h3>basis pelatihan agen dan kontrol komoditas.</h3>
         </div>
       </div>
     </div>
   </section>
-  
+
   <!-- ===== Shop Section ===== -->
-  <section id="shop" class="shop-section outer">
+  <section id="shop" class="shop-section hidden outer">
     <i class="fas fa-shop" title="market"></i>
-    <h2>Controlled Inventory</h2>
+    <h2>Market Supply</h2>
 
     <!-- Kategori -->
     <nav class="shop-categories">
@@ -1250,8 +1538,14 @@ body.lock-scroll {
 
     <!-- Search -->
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search Product . . ." />
-      <button onclick="searchItems()" class="search-btn button"><i class="fas fa-search"></i></button>
+      <input type="text" id="searchInput" placeholder="Search Product . . ." aria-label="Search product"/>  
+      <button class="search-btn button" aria-label="Search" id="searchBtn">
+        <i class="fas fa-search"></i>
+      </button>
+      <button class="cart-btn button" aria-label="Open cart" id="cartBtn">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartBadge" class="cart-badge">0</span>
+      </button>
     </div>
 
     <!-- Produk -->
@@ -1264,10 +1558,10 @@ body.lock-scroll {
       <button id="prevBtn" class="button">←</button>
       <button id="nextBtn" class="button">→</button>
     </div>
-  </section>  
+  </section>
 
   <!-- ===== Services Section ===== -->
-  <section id="services" class="services-section outer">
+  <section id="services" class="services-section hidden outer">
     <i class="fas fa-gear"></i>
     <h2>Official Operation</h2>
     <div class="services-grid">
@@ -1304,70 +1598,72 @@ body.lock-scroll {
     </div>
   </section>
 
-<!-- ===== Testimonials Section ===== -->
-<section id="testimonial" class="testimonial-section outer">
-  <i class="fas fa-comments"></i>
-  <h2>Testimonials</h2>
+  <!-- ===== Testimonials Section ===== -->
+  <section id="testimonial" class="testimonial-section hidden outer">
+    <i class="fas fa-comments"></i>
+    <h2>Testimonial</h2>
 
-  <div class="testimonial-grid">
-    
-    <div class="testimonial-card inset">
-      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
-      <h3>Black Cauldron</h3>
-      <p>“ Mereka bukan hanya mencampur bahan kimia, mereka meracik kekuasaan. 
-          Setiap formula adalah langkah catur menuju dominasi. ”</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card inset">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
+        <h3>Black Cauldron</h3>
+        <p>“ Mereka bukan hanya mencampur bahan kimia, mereka meracik kekuasaan. 
+            Setiap formula adalah langkah catur menuju dominasi. ”</p>
+      </div>
+
+      <div class="testimonial-card inset">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
+        <h3>Shadow Molecule</h3>
+        <p>“ Di dunia ini, hanya yang mengerti senyawa yang bisa menguasai pasar. 
+            Mereka mengajariku bagaimana menguapkan musuh tanpa jejak. ”</p>
+      </div>
+
+      <div class="testimonial-card inset">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
+        <h3>Cartel Catalyst</h3>
+        <p>“ Mereka bergerak seperti reaksi kimia, cepat, presisi, dan tak terhentikan. 
+            Satu percikan, dan seluruh permainan berubah. ”</p>
+      </div>
+
+      <div class="testimonial-card inset">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
+        <h3>The Ghost Handler</h3>
+        <p>“ Alchemist Stream memberi saya strategi yang tidak pernah terpikirkan sebelumnya. 
+            Bukan sekadar layanan, tapi senjata. ”</p>
+      </div>
+
+      <div class="testimonial-card inset">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
+        <h3>Chemistry Syndicate</h3>
+        <p>“ Kombinasi seni, budaya, dan perhitungan yang presisi. 
+            Sangat direkomendasikan bagi yang ingin bermain di level tertinggi. ”</p>
+      </div>
+
+      <div class="testimonial-card inset">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
+        <h3>The Strong Hold</h3>
+        <p>“ Kerja sama yang luar biasa. Mereka tahu kapan harus bergerak, dan kapan harus menghilang. ”</p>
+      </div>
     </div>
+  </section>
 
-    <div class="testimonial-card inset">
-      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
-      <h3>Shadow Molecule</h3>
-      <p>“ Di dunia ini, hanya yang mengerti senyawa yang bisa menguasai pasar. 
-          Mereka mengajariku bagaimana menguapkan musuh tanpa jejak. ”</p>
-    </div>
-
-    <div class="testimonial-card inset">
-      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
-      <h3>Cartel Catalyst</h3>
-      <p>“ Mereka bergerak seperti reaksi kimia, cepat, presisi, dan tak terhentikan. 
-          Satu percikan, dan seluruh permainan berubah. ”</p>
-    </div>
-
-    <div class="testimonial-card inset">
-      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
-      <h3>The Ghost Handler</h3>
-      <p>“ Alchemist Stream memberi saya strategi yang tidak pernah terpikirkan sebelumnya. 
-          Bukan sekadar layanan, tapi senjata. ”</p>
-    </div>
-
-    <div class="testimonial-card inset">
-      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
-      <h3>Chemistry Syndicate</h3>
-      <p>“ Kombinasi seni, budaya, dan perhitungan yang presisi. 
-          Sangat direkomendasikan bagi yang ingin bermain di level tertinggi. ”</p>
-    </div>
-
-    <div class="testimonial-card inset">
-      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Client">
-      <h3>The Strong Hold</h3>
-      <p>“ Kerja sama yang luar biasa. Mereka tahu kapan harus bergerak, dan kapan harus menghilang. ”</p>
-    </div>
-
-  </div>
-</section>
-  
   <!-- ===== Contact Section ===== -->
-  <section id="contact" class="contact-section outer">
+  <section id="contact" class="contact-section hidden outer">
     <i class="fas fa-envelope"></i>
     <h2>Get In Touch</h2>
+
     <div class="contact-container">
       <div class="contact-item outer">
-        <i class="fas fa-globe"></i><p>Indonesia</p>
+        <i class="fas fa-globe"></i>
+        <p>Indonesia</p>
       </div>
       <div class="contact-item outer">
-        <i class="fas fa-phone"></i><p>+62 777 1945 1708</p>
+        <i class="fas fa-phone"></i>
+        <p>+62 777 1945 1708</p>
       </div>
       <div class="contact-item outer">
-        <i class="fas fa-pen"></i><p>alchemistream@gmail.com</p>
+        <i class="fas fa-pen"></i>
+        <p>alchemistream@gmail.com</p>
       </div>
     </div>
 
@@ -1381,44 +1677,32 @@ body.lock-scroll {
   </section>
 
   <!-- ===== Footer ===== -->
-  <footer class="button" translate="no">
-    <a href="https://alchemistream.github.io">© Alchemist Stream Syndicate</a>
-  </footer>
+  <div class="footer-routine outer">
+    <div class="footer-icons">
+      <i class="fas fa-bed inset" title="sleep"></i>
+      <i class="fas fa-shower inset" title="bathe"></i>
+      <i class="fas fa-utensils inset" title="food"></i>
+      <i class="fas fa-gamepad inset" title="game"></i>
+      <i class="fas fa-redo-alt inset" title="repeat"></i>
+    </div>
 
-  <!-- ===== Scripts ===== -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <p class="footer-quote">
+      All these activities are considered legitimate because they fall under the "rules" or principles
+      of individual freedom and expression, and are symbolically or culturally protected by the community
+      or society in the "scene".
+    </p>
 
+    <footer class="button" translate="no">
+      <a href="#">© Alchemist Stream Syndicate</a>
+    </footer>
+  </div>
+
+<!-- ===== Scripts ===== -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script>
-function generateCaptcha() {
-  let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let code = '';
-  for (let i = 0; i < 5; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  document.getElementById("captchaCode").textContent = code;
-}
 
-function login() {
-  let user = document.getElementById("username").value.trim();
-  let domisili = document.getElementById("domisili").value.trim();
-  let captcha = document.getElementById("captchaInput").value.trim();
-  let correctCaptcha = document.getElementById("captchaCode").textContent;
+// ================ VARIABEL UTAMA ================= //
 
-  if (user && domisili && captcha === correctCaptcha) {
-    document.getElementById("loginOverlay").style.display = "none";
-    document.body.classList.remove("lock-scroll"); // aktifkan scroll
-  } else {
-    alert("Data atau captcha salah!");
-  }
-}
-
-// Saat pertama kali halaman dibuka, kunci scroll
-document.body.classList.add("lock-scroll");
-// Bikin captcha pertama kali
-generateCaptcha();
-</script>
-  <script>
-// ======== DATA PRODUK ========
 const products = [
   { name: "ORI-Synth A-301", price: 150000, category: "product-1", image: "https://i.ibb.co.com/Z6CgwZ9Y/ORI-synth.png" },
   { name: "ORI-Synth A-302", price: 250000, category: "product-1", image: "https://i.ibb.co.com/Z6CgwZ9Y/ORI-synth.png" },
@@ -1431,7 +1715,6 @@ const products = [
   { name: "Crystal-Meth C-303", price: 350000, category: "product-3", image: "https://i.ibb.co.com/xtfVQf71/Crystal-Meth.png" }
 ];
 
-// ======== VARIABEL UTAMA ========
 let allItems = [];
 let currentCategory = 'product-1';
 let currentIndex = 0;
@@ -1525,6 +1808,61 @@ function updateCartBadge() {
 }
 
 // Panggil ini di akhir updateCart()
+// Global variabel lokasi user
+window.userLocation = null;
+
+function updateLocation() {
+  if (!navigator.geolocation) {
+    setLocationText('Geolocation tidak didukung browser');
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(position => {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+      .then(res => res.json())
+      .then(data => {
+        const addr = data.address || {};
+
+        const elCountry = document.getElementById('user-country');
+if(elCountry) elCountry.textContent = addr.country || '-';
+
+const elRegion = document.getElementById('user-region');
+if(elRegion) elRegion.textContent = addr.state || '-';
+
+const elCity = document.getElementById('user-city');
+if(elCity) elCity.textContent = addr.city || addr.town || addr.village || '-';
+
+const elSuburb = document.getElementById('user-suburb');
+if(elSuburb) elSuburb.textContent = addr.suburb || addr.neighbourhood || '-';
+
+        window.userLocation = {
+          country: addr.country || '-',
+          region: addr.state || '-',
+          city: addr.city || addr.town || addr.village || '-',
+          suburb: addr.suburb || addr.neighbourhood || '-',
+        };
+
+        updateCart(); // PENTING: update cart setelah lokasi didapat
+      })
+      .catch(() => {
+        setLocationText('Gagal mengambil data lokasi');
+      });
+  }, () => {
+    setLocationText('Not Found 404');
+  }, { timeout: 10000 });
+}
+
+function setLocationText(msg) {
+  ['user-country', 'user-region', 'user-city', 'user-suburb'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = msg;
+  });
+}
+
+// Fungsi updateCart yang pakai lokasi di pesan WA
 function updateCart() {
   const cartItems = cartList.querySelectorAll('li');
   let total = 0;
@@ -1540,16 +1878,29 @@ function updateCart() {
   cartTotal.textContent = `Total : IDR ${total.toLocaleString('id-ID')}`;
   emptyCartMsg.style.display = cartItems.length ? 'none' : 'block';
 
+  let locationText = '';
+  if (window.userLocation) {
+    const loc = window.userLocation;
+    locationText = `\n\nLokasi Pengiriman:\n${loc.suburb}, ${loc.city}, ${loc.region}, ${loc.country}`;
+  }
+
   if (cartItems.length > 0) {
-    const message = encodeURIComponent(`Halo, saya ingin memesan:\n\n${orderText.join('\n')}\n\nTotal : IDR ${total.toLocaleString('id-ID')}`);
+    const message = encodeURIComponent(`Halo, saya ingin memesan:\n\n${orderText.join('\n')}${locationText}\n\nTotal : IDR ${total.toLocaleString('id-ID')}`);
     whatsappLink.href = `https://wa.me/+15555555555?text=${message}`;
   } else {
     whatsappLink.href = '#';
   }
 
-  // Update badge di sini
   updateCartBadge();
 }
+
+window.onload = () => {
+  updateLocation();
+  renderProducts(products);
+};
+
+document.getElementById('searchInput').addEventListener('input', searchItems);
+
 // ======== EVENT LISTENER ========
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1574,34 +1925,162 @@ nextBtn.addEventListener('click', () => {
   }
 });
 
+whatsappLink.addEventListener('click', function (e) {
+  const cartItems = cartList.querySelectorAll('li');
+  
+  if (cartItems.length === 0) {
+    e.preventDefault(); 
+    alert('Daftar belanja masih kosong!');
+  }
+});
+
 clearCartBtn.addEventListener('click', () => {
+  const cartItems = cartList.querySelectorAll('li');
+
+  if (cartItems.length === 0) {
+    alert('Keranjang sudah kosong!');
+    return; 
+  }
+
   cartList.innerHTML = '';
   updateCart();
 });
 
-document.getElementById('searchInput').addEventListener('input', searchItems);
-renderProducts(products);
+
+// ============================================= //
 
 
-  // Button Press Effect
-  document.querySelectorAll('.button').forEach(el => {
-    el.addEventListener('mousedown', () => el.classList.add('pressed'));
-    el.addEventListener('mouseup', () => el.classList.remove('pressed'));
-    el.addEventListener('mouseleave', () => el.classList.remove('pressed'));
+const menuPanel = document.getElementById('menuPanel');
+const closeMenu = document.getElementById('closeMenu');
+const openMenuBtn = document.getElementById('openMenu');
+
+if (closeMenu) {
+  closeMenu.addEventListener('click', () => {
+    menuPanel.classList.add('hidden');
+  });
+}
+
+if (openMenuBtn) {
+  openMenuBtn.addEventListener('click', () => {
+    menuPanel.classList.remove('hidden');
+  });
+}
+
+function toggleMenu() {
+  menuPanel.classList.toggle("hidden");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Klik menu untuk scroll
+  document.querySelectorAll(".menu-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetSelector = btn.getAttribute("data-target");
+      const targetElement = document.querySelector(targetSelector);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      menuPanel.classList.add("hidden");
+    });
   });
 
-  // Typed.js
-  if (typeof Typed !== 'undefined') {
-    new Typed("#typed", {
-      strings: ["“ Chemical Control Syndicate ”","“ Chemistry Meets Control ”","“ Connections The Underground ”"],
-      typeSpeed: 60,
-      backSpeed: 40,
-      backDelay: 1500,
-      loop: true,
-    });
+  // Tutup menu jika klik di luar
+  document.addEventListener("click", (event) => {
+    const hamburger = document.querySelector(".hamburger");
+    if (!menuPanel.contains(event.target) && !hamburger.contains(event.target)) {
+      menuPanel.classList.add("hidden");
+    }
+  });
+});
+
+
+// ============================================= //
+
+
+const cartPanel = document.getElementById('cartPanel');
+const openCartBtn = document.getElementById('openCart');
+const closeCartBtn = document.getElementById('closeCart');
+
+function toggleCart() {
+  cartPanel.classList.toggle("hidden");
+}
+
+if (openCartBtn) {
+  openCartBtn.addEventListener('click', () => {
+    cartPanel.classList.remove('hidden');
+  });
+}
+
+if (closeCartBtn) {
+  closeCartBtn.addEventListener('click', () => {
+    cartPanel.classList.add('hidden');
+  });
+}
+
+// Tutup cart jika klik di luar
+document.addEventListener("click", (e) => {
+  const shopBtn = document.querySelector(".cart-btn");
+  if (!cartPanel.contains(e.target) && !shopBtn.contains(e.target)) {
+    cartPanel.classList.add("hidden");
   }
-  
-  // Tab Switching
+});
+
+document.getElementById('searchBtn').addEventListener('click', searchItems);
+document.getElementById('cartBtn').addEventListener('click', toggleCart);
+
+
+// ============================================= //
+
+
+function generateCaptcha() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code = '';
+  for (let i = 0; i < 7; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  document.getElementById("captchaCode").textContent = code;
+}
+
+function login() {
+  const user = document.getElementById("username").value.trim();
+  const domisili = document.getElementById("domisili").value.trim();
+  const captcha = document.getElementById("captchaInput").value.trim();
+  const correctCaptcha = document.getElementById("captchaCode").textContent;
+
+  if (user && domisili && captcha === correctCaptcha) {
+    document.getElementById("loginOverlay").style.display = "none";
+    document.body.classList.remove("lock-scroll");
+  } else {
+    alert("Data atau captcha salah!");
+  }
+}
+
+document.body.classList.add("lock-scroll");
+generateCaptcha();
+
+
+// ============================================= //
+
+
+const menuButtons = document.querySelectorAll('.menu-btn');
+const sections = document.querySelectorAll('section');
+
+menuButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetSelector = btn.getAttribute('data-target'); 
+    sections.forEach(sec => {
+      if ('#' + sec.id === targetSelector) {
+        sec.classList.remove('hidden');  
+      } else {
+        sec.classList.add('hidden');   
+      }
+    });
+  setTimeout(() => {
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+}, 30);
+  });
+});
+
+
   document.addEventListener('DOMContentLoaded', () => {
     const tabItems = document.querySelectorAll('.tab-item');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -1619,90 +2098,85 @@ renderProducts(products);
     });
   });
 
-  // Contact Form Submission
-  const form = document.getElementById("contactForm");
-  if (form) {
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const nama = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const subjek = document.getElementById("subject").value;
-      const pesan = document.getElementById("message").value;
-
-      alert(`Thank you, ${nama}!\nYour message has been sent.\n\nEmail : ${email}\nSubject : ${subjek}\nMessage : ${pesan}`);
-
-      form.reset();
-    });
-  }
-  
-  document.querySelector('.typed-text').setAttribute('translate', 'no');
-  document.querySelector('footer').setAttribute('translate', 'no');
-  
-
-// Toggle menu panel
-function toggleMenu() {
-const menuPanel = document.getElementById("menuPanel");
-menuPanel.classList.toggle("hidden");
+if (typeof Typed !== 'undefined') {
+  new Typed("#typed", {
+    strings: ["“ Chemical Control Syndicate ”","“ Chemistry Meets Control ”","“ Connections The Underground ”"],
+    typeSpeed: 60,
+    backSpeed: 40,
+    backDelay: 1500,
+    loop: true,
+  });
 }
 
-// Klik tombol menu untuk scroll ke target
-document.addEventListener("DOMContentLoaded", () => {
-const menuButtons = document.querySelectorAll(".menu-btn");
+const preload = document.getElementById("preload");
+const fingerprint = document.querySelector(".fingerprint");
+const bgMusic = document.getElementById("bg-music");
 
-menuButtons.forEach(btn => {
-btn.addEventListener("click", () => {
-const targetSelector = btn.getAttribute("data-target");
-const targetElement = document.querySelector(targetSelector);
-
-if (targetElement) {  
-    // Smooth scroll ke target  
-    targetElement.scrollIntoView({  
-      behavior: "smooth",  
-      block: "start"  
-    });  
-  }  
-
-  // Tutup menu setelah klik  
-  document.getElementById("menuPanel").classList.add("hidden");  
+fingerprint.addEventListener("click", () => {
+  preload.style.display = "none"; 
+  bgMusic.play().catch(err => console.log("Autoplay diblokir:", err));
 });
 
-});
-
-// Tutup menu jika klik di luar panel
-document.addEventListener("click", (event) => {
-const menuPanel = document.getElementById("menuPanel");
-const hamburger = document.querySelector(".hamburger");
-
-if (!menuPanel.contains(event.target) && !hamburger.contains(event.target)) {  
-  menuPanel.classList.add("hidden");  
+const form = document.getElementById("contactForm");
+if (form) {
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const nama = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subjek = document.getElementById("subject").value;
+    const pesan = document.getElementById("message").value;
+    alert(`Thank you, ${nama}!\nYour message has been sent.\n\nEmail : ${email}\nSubject : ${subjek}\nMessage : ${pesan}`);
+    form.reset();
+  });
 }
 
-});
-});
+// ============================================= //
 
-function toggleCart() {
-const cartPanel = document.getElementById("cartPanel");
-cartPanel.classList.toggle("hidden");
+
+function openModal(type) {
+  const messages = {
+    Announcement: `
+      <strong>Pengumuman Resmi</strong><br><br><br>
+      Selamat datang di Alchemist Stream, markas rahasia para mafia dan alkemis.<br><br>
+      Pastikan kamu mematuhi aturan permainan ini :<br><br><br>
+      1. Jaga rahasia identitasmu.<br><br>
+      2. Hormati sesama anggota.<br><br>
+      3. Jangan sembarangan bertindak.<br><br>
+      4. Laporkan aktivitas mencurigakan.<br><br><br>
+      Perhatikan setiap detail, semua hal penuh tipuan dan intrik.
+    `,
+    Attention: `
+      <strong>Peringatan Keras!</strong><br><br><br>
+      1. Pelanggaran aturan akan berujung hukuman.<br><br>
+      2. Waspada terhadap mata-mata.<br><br>
+      3. Gunakan rencana dan strategi.<br><br>
+      4. Jangan berbagi informasi penting.<br><br><br>
+      Hanya yang cerdik yang bertahan dan berada di puncak kekuasaan.
+    `
+  };
+  document.getElementById('modalMessage').innerHTML = messages[type] || '';
+  document.getElementById('myModal').style.display = 'flex';
 }
 
-// Klik di luar cart → auto close
-document.addEventListener("click", (e) => {
-const cartPanel = document.getElementById("cartPanel");
-const shoppingBtn = document.querySelector(".shopping");
-
-if (!cartPanel.contains(e.target) && !shoppingBtn.contains(e.target)) {
-cartPanel.classList.add("hidden");
+function closeModal() {
+  document.getElementById('myModal').style.display = 'none';
 }
+
+// ============================================= //
+
+
+document.querySelectorAll('.button').forEach(el => {
+  el.addEventListener('mousedown', () => el.classList.add('pressed'));
+  el.addEventListener('mouseup', () => el.classList.remove('pressed'));
+  el.addEventListener('mouseleave', () => el.classList.remove('pressed'));
 });
 
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("copy", e => e.preventDefault());
 
-        
-  // Disable right-click, text select and copy
-  document.addEventListener("contextmenu", e => e.preventDefault());
-  document.addEventListener("selectstart", e => e.preventDefault());
-  document.addEventListener("copy", e => e.preventDefault());
-  </script>
-
+document.querySelector('.typed-text').setAttribute('translate', 'no');
+document.querySelector('footer').setAttribute('translate', 'no');
+</script>
 </body>
 </html>
