@@ -1,27 +1,13 @@
 
 
-const preload = document.getElementById('preload');
-const startBtn = document.getElementById('startBtn');
-const bgMusic = document.getElementById('bg-music');
+const preload = document.getElementById("preload");
+const fingerprint = document.querySelector(".fingerprint");
+const bgMusic = document.getElementById("bg-music");
 
-startBtn.addEventListener('click', () => {
-  // sembunyikan preload
-  preload.style.display = 'none';
-
-  // mainkan musik
-  bgMusic.play()
-    .then(() => console.log("Musik diputar"))
-    .catch(err => console.log("Autoplay diblokir:", err));
-
-  // di sini bisa panggil fungsi untuk render website
-  initWebsite();
+fingerprint.addEventListener("click", () => {
+  preload.style.display = "none"; 
+  bgMusic.play().catch(err => console.log("Autoplay diblokir:", err));
 });
-
-// contoh fungsi render website setelah preload hilang
-function initWebsite() {
-  console.log("Website sudah aktif");
-  // panggil semua fungsi lain seperti renderProducts() dsb
-}
 
 
 const menuButtons = document.querySelectorAll('.menu-btn');
