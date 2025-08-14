@@ -30,6 +30,8 @@
   padding: 0;
   user-select: none;
   -webkit-user-select: none;
+  -moz-user-select: none;    
+  -ms-user-select: none;    
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -1195,6 +1197,7 @@ footer a {
 
 /* Paragraf kecil di login box */
 .login-box p {
+  margin-top: 20px;
   font-size: 10px;
   color: var(--font-color); 
   font-family: var(--font-global);
@@ -1306,33 +1309,41 @@ body.lock-scroll {
   </audio>
 
   <!-- ===== Login Overlay ===== -->
-  <div id="loginOverlay" class="login-overlay">
-    <div class="login-box outer">
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-box outer">
+    <form id="loginForm">
       <div class="log-in">
         <i class="fas fa-user-secret"></i>
         <h2>User Secret</h2>
       </div>
-      <input class="inset" type="text" id="username" placeholder="Username" required>
-      <input class="inset" type="text" id="domisili" placeholder="Domicile" required>
+
+      <input class="inset" type="text" id="username" name="username" placeholder="Username" required>
+      <input class="inset" type="text" id="domisili" name="domisili" placeholder="Domicile" required>
 
       <!-- Captcha sederhana -->
       <div class="captcha">
-        <input class="inset" type="text" id="captchaInput" placeholder="Enter Code" required>
-        <span class="outer" id="captchaCode"></span>
+        <input class="inset" type="text" id="captchaInput" name="captcha" placeholder="Enter Code" required pattern="[A-Z0-9]{5}">
+        <span class="button" type="button" id="captchaCode" onclick="copyCaptcha()"></span>
         <button class="button" type="button" onclick="generateCaptcha()">
           <i class="fa-solid fa-rotate"></i>
         </button>
       </div>
+      <!-- Captcha button -->
 
-      <button class="button" onclick="login()">Verification</button>
+      <!-- Notifikasi ngambang -->
+      <div id="notifCaptcha" class="notif" style="display:none; position:absolute; top:30px; left:50%; transform:translateX(-50%); background: var(--accent-gradient); color: var(--font-color); padding:10px 20px; border-radius: var(--radius); border: 2px solid #fff; z-index:9999;"> Captcha berhasil disalin! </div>
+
+      <button class="button" type="submit">Verification</button>
 
       <div class="notif-button">
         <button class="button" type="button" onclick="openModal('Announcement')">Announcement</button>
         <button class="button" type="button" onclick="openModal('Attention')">Attention</button>
       </div>
-      <p>Please read the Announcement and Attention first to know the rules and requirements.</p>      
-    </div>
+
+      <p>Please read the Announcement and Attention first to know the rules and requirements.</p>
+    </form>
   </div>
+</div>
 
   <!-- Modal Overlay -->
   <div id="myModal" class="modal" style="display:none;">
@@ -2034,31 +2045,58 @@ window.onload = () => {
 
 // ============================================= //
 
+const preload = document.getElementById("preload");
+const fingerprint = document.querySelector(".fingerprint");
+const bgMusic = document.getElementById("bg-music");
 
+fingerprint.addEventListener("click", () => {
+  preload.style.display = "none"; 
+  bgMusic.play().catch(err => console.log("Autoplay diblokir:", err));
+});
+
+
+// Generate captcha
 function generateCaptcha() {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let code = '';
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 5; i++) {
     code += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  document.getElementById("captchaCode").textContent = code;
+  const captchaBtn = document.getElementById("captchaCode");
+  captchaBtn.textContent = code;
 }
 
-function login() {
-  const user = document.getElementById("username").value.trim();
-  const domisili = document.getElementById("domisili").value.trim();
+// Copy captcha + notifikasi
+function copyCaptcha() {
+  const captchaBtn = document.getElementById("captchaCode");
+  const text = captchaBtn.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const notif = document.getElementById("notifCaptcha");
+    notif.style.display = "block";
+    setTimeout(() => { notif.style.display = "none"; }, 2000);
+  }).catch(err => console.log("Gagal menyalin:", err));
+}
+
+// Event click captcha
+document.getElementById("captchaCode").addEventListener("click", copyCaptcha);
+
+// Tangani form submit
+document.getElementById("loginForm").addEventListener("submit", function(e){
+  e.preventDefault(); // cegah reload
+
   const captcha = document.getElementById("captchaInput").value.trim();
   const correctCaptcha = document.getElementById("captchaCode").textContent;
 
-  if (user && domisili && captcha === correctCaptcha) {
-    document.getElementById("loginOverlay").style.display = "none";
-    document.body.classList.remove("lock-scroll");
-  } else {
-    alert("Data atau captcha salah!");
+  if(captcha !== correctCaptcha){
+    alert("Captcha salah!");
+    generateCaptcha(); // refresh captcha
+    return;
   }
-}
 
-document.body.classList.add("lock-scroll");
+  document.getElementById("loginOverlay").style.display = "none";
+  document.body.classList.remove("lock-scroll");
+});
+
 generateCaptcha();
 
 
@@ -2111,15 +2149,6 @@ if (typeof Typed !== 'undefined') {
     loop: true,
   });
 }
-
-const preload = document.getElementById("preload");
-const fingerprint = document.querySelector(".fingerprint");
-const bgMusic = document.getElementById("bg-music");
-
-fingerprint.addEventListener("click", () => {
-  preload.style.display = "none"; 
-  bgMusic.play().catch(err => console.log("Autoplay diblokir:", err));
-});
 
 const form = document.getElementById("contactForm");
 if (form) {
