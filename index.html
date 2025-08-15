@@ -797,18 +797,18 @@ footer a {
 }
 
 .scroll-buttons {
-  text-align: center;
-  margin-top: 25px;
-  display: flex;
+display: flex;
+  text-align: center;  
   justify-content: center;
-  gap: 15px;
+  margin-top: 25px;
+  gap: 20px;
 }
 
 .scroll-buttons button {
   padding: 10px 15px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  font-size: 15px;
+  font-size: 20px;
   color: var(--font-color);
   cursor: pointer;
   transition: all color 0.3s ease;
@@ -1295,8 +1295,12 @@ footer a {
 body.lock-scroll {
   margin: 0;
   padding: 0;
-  height: 100vh;  
-  overflow: hidden;  
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: fixed; 
+  top: 0;
+  left: 0;
 }
 </style>
 </head>
@@ -2052,11 +2056,11 @@ window.onload = () => {
 
 // ============================================= //
 
+
+document.body.classList.add("lock-scroll");
 const preload = document.getElementById("preload");
 const fingerprint = document.querySelector(".fingerprint");
 const bgMusic = document.getElementById("bg-music");
-
-document.body.classList.add("lock-scroll");
 
 fingerprint.addEventListener("click", () => {
   preload.classList.add("hidden");
